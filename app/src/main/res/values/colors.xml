@@ -2,4 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="myPrimaryDark">#0A264A</color>
+    <color name="my_primary">#5D9CEC</color>
+    <color name="mySecondary">#5D9CEC</color>
+    <color name="mySecondaryDark">#0A264A</color>
+
+    <color name="transparent">#00FFFFFF</color>
+    <color name="light_green">#DFECDB</color>
+    <color name="red">#F30B0B</color>
 </resources>
