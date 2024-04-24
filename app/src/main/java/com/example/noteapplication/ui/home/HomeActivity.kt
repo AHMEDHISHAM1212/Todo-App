@@ -3,9 +3,11 @@ package com.example.noteapplication.ui.home
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.noteapplication.R
 import com.example.noteapplication.databinding.ActivityHomeBinding
+import com.example.noteapplication.ui.home.tabs.AddTaskBottomFragment
 import com.example.noteapplication.ui.home.tabs.SettingsFragment
 import com.example.noteapplication.ui.home.tabs.TasksListFragment
 
@@ -16,6 +18,21 @@ class HomeActivity : AppCompatActivity() {
         viewBinding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
         initBottomNavClicks()
+        initFabClick()
+    }
+
+    private fun initFabClick() {
+        viewBinding.fabAdd.setOnClickListener{
+            showAddTasksBottomFragment()
+        }
+    }
+
+    private fun showAddTasksBottomFragment() {
+        val addTaskFragment = AddTaskBottomFragment()
+        addTaskFragment.onAddedTasksListener = AddTaskBottomFragment.OnAddedTasksListener {
+            Toast.makeText(this,"Task added Successfully",Toast.LENGTH_LONG).show()
+        }
+        addTaskFragment.show(supportFragmentManager,"")
     }
 
     private fun initBottomNavClicks() {
