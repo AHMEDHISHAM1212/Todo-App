@@ -2,17 +2,17 @@ package com.example.noteapplication.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.noteapplication.R
 import com.example.noteapplication.databinding.ActivityHomeBinding
 import com.example.noteapplication.ui.home.tabs.AddTaskBottomFragment
 import com.example.noteapplication.ui.home.tabs.SettingsFragment
-import com.example.noteapplication.ui.home.tabs.TasksListFragment
+import com.example.noteapplication.ui.home.tabs.tasksList.TasksListFragment
+import com.google.android.material.snackbar.Snackbar
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityHomeBinding
+    private var tasksListFragmentRef: TasksListFragment?= null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityHomeBinding.inflate(layoutInflater)
@@ -30,7 +30,10 @@ class HomeActivity : AppCompatActivity() {
     private fun showAddTasksBottomFragment() {
         val addTaskFragment = AddTaskBottomFragment()
         addTaskFragment.onAddedTasksListener = AddTaskBottomFragment.OnAddedTasksListener {
-            Toast.makeText(this,"Task added Successfully",Toast.LENGTH_LONG).show()
+            Snackbar.make(viewBinding.root,"Note added successfully.",Snackbar.LENGTH_LONG)
+                .show()
+            //notify the fragment , new task added
+            tasksListFragmentRef?.loadTask()
         }
         addTaskFragment.show(supportFragmentManager,"")
     }
@@ -41,7 +44,8 @@ class HomeActivity : AppCompatActivity() {
         viewBinding.bottomNav.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.nav_tasks_list ->{
-                    showFragment(TasksListFragment())
+                    tasksListFragmentRef = TasksListFragment()
+                    showFragment(tasksListFragmentRef!!)
                 }
                 R.id.nav_tasks_settings ->{
                     showFragment(SettingsFragment())
