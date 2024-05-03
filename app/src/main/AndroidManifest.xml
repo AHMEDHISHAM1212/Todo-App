@@ -15,6 +15,8 @@
         <activity
             android:name=".ui.home.HomeActivity"
             android:exported="false"/>
+        <activity android:name=".ui.home.tabs.tasksList.TaskDetailsActivity"
+            android:exported="false"/>
 
         <activity android:name=".ui.splash.SplashActivity"
             android:exported="true"

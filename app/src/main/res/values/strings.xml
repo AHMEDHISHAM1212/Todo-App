@@ -8,4 +8,9 @@
     <string name="content">Content</string>
     <string name="title">Title</string>
     <string name="add_note">Add note</string>
+    <string name="enter_task_desc">Enter Task Desc</string>
+    <string name="edit_task">Edit Task</string>
+    <string name="edit_task_title">Edit task title</string>
+    <string name="edit_task_description">Edit task description</string>
+    <string name="save_changes">Save Changes</string>
 </resources>

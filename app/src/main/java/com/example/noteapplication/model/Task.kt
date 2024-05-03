@@ -1,10 +1,13 @@
 package com.example.noteapplication.model
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 @Entity
+@Parcelize
 data class Task(
     @ColumnInfo
     @PrimaryKey(autoGenerate = true)
@@ -17,4 +20,4 @@ data class Task(
     val date: Long?= null,
     @ColumnInfo
     val isDone: Boolean= false
-)
+): Parcelable

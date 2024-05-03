@@ -18,7 +18,15 @@ class TasksAdapter(var tasksList: List<Task>?= null):
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-       holder.bind(tasksList!![position])
+        holder.bind(tasksList!![position])
+
+        if(onItemClickListener!=null){
+            holder.itemBinging.root
+                .setOnClickListener{
+                    onItemClickListener!!
+                        .onItemClick(position = position , task = tasksList!![position])
+                }
+        }
     }
 
     override fun getItemCount(): Int = tasksList!!.size
@@ -27,6 +35,12 @@ class TasksAdapter(var tasksList: List<Task>?= null):
         notifyDataSetChanged()
 
     }
+    var onItemClickListener: OnItemClickListener?= null
+
+    fun interface OnItemClickListener{
+        fun onItemClick(position: Int , task: Task)
+    }
+
 
     class ViewHolder(val itemBinging: ItemTaskBinding): RecyclerView.ViewHolder(itemBinging.root){
         fun bind(task: Task){
